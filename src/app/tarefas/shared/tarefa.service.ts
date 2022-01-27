@@ -21,7 +21,20 @@ export class TarefaService {
     localStorage['tarefas'] = JSON.stringify(tarefas);
   }
 
+  buscarTarefaPorId(id: number): Tarefa {
+    const tarefas: Tarefa[] = this.listarTarefas();
+    return tarefas.find(tarefa => tarefa.id === id);
+  }
 
+  atualizarTarefa(tarefa: Tarefa): void {
+    const tarefas: Tarefa[] = this.listarTarefas();
+    tarefas.forEach((obj, index, objs) => {
+      if(tarefa.id === obj.id) {
+        objs[index] = tarefa;
+      }
+    });
+    localStorage['tarefas'] = JSON.stringify(tarefas);
+  }
 
 
 
